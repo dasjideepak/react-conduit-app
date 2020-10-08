@@ -41,7 +41,7 @@ export default function Header(props) {
         </div>
 
         <div id="navbarBasicExample" className="navbar-menu">
-          {localStorage.authorization ? (
+          {localStorage.authToken ? (
             <div className="navbar-end">
               <NavLink to="/" className="navbar-item">
                 Home
@@ -69,9 +69,9 @@ export default function Header(props) {
                   <NavLink to="/signup" className="button is-info">
                     <strong>Sign up</strong>
                   </NavLink>
-                  <a href="##" className="button is-link">
+                  <NavLink to="/login" className="button is-link">
                     Log in
-                  </a>
+                  </NavLink>
                 </div>
               </div>
             </div>
