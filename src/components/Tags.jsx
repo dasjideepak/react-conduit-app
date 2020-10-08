@@ -10,7 +10,7 @@ export default function Tags() {
     return (
       <div className="tags-sec justify-between">
         <div className="tags-container">
-          <h1>Loading</h1>;
+          <h1>Loading</h1>
         </div>
       </div>
     );
@@ -20,7 +20,7 @@ export default function Tags() {
     return (
       <div className="tags-sec justify-between">
         <div className="tags-container">
-          <h1>Error...</h1>;
+          <h1>Error...</h1>
         </div>
       </div>
     );
@@ -45,7 +45,7 @@ export default function Tags() {
   return (
     <div className="tags-sec justify-between">
       <div className="tags-container">
-        <h1>Loading</h1>;
+        <h1>Loading</h1>
       </div>
     </div>
   );
