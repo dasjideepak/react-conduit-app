@@ -145,3 +145,15 @@ footer {
 .button-loader {
   padding-left: 8px;
 }
+
+.articles-feed {
+  width: 100%;
+  .border-feed {
+    border-bottom: 1px solid rgb(143, 142, 142);
+    padding-bottom: 4px;
+  }
+  .feed-tab {
+    cursor: pointer;
+    padding-right: 12px;
+  }
+}
