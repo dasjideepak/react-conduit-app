@@ -1,5 +1,5 @@
 import React from "react";
-import useFetch from "./hooks/useFetch";
+import { useFetch } from "./hooks/handleFetch";
 import { v4 as uuid } from "uuid";
 
 export default function Tags() {

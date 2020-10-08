@@ -1,9 +1,19 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 import { FaRegEdit } from "react-icons/fa";
 import { IoIosSettings } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
+import { useHistory } from "react-router-dom";
 
-export default function Header() {
+export default function Header(props) {
+  const history = useHistory();
+
+  function handleLogout(e) {
+    e.preventDefault();
+    localStorage.clear();
+    history.push("/");
+  }
+
   return (
     <header>
       <nav
@@ -12,9 +22,9 @@ export default function Header() {
         aria-label="main navigation"
       >
         <div className="navbar-brand">
-          <a href="##" className="navbar-item">
+          <NavLink to="/" className="navbar-item">
             <img src="/images/logo.png" alt="logo-img" />
-          </a>
+          </NavLink>
 
           <a
             href="##"
@@ -31,11 +41,11 @@ export default function Header() {
         </div>
 
         <div id="navbarBasicExample" className="navbar-menu">
-          {false ? (
+          {localStorage.authorization ? (
             <div className="navbar-end">
-              <a href="##" className="navbar-item">
+              <NavLink to="/" className="navbar-item">
                 Home
-              </a>
+              </NavLink>
               <a href="##" className="navbar-item">
                 <FaRegEdit />
                 <span>New Post</span>
@@ -46,19 +56,19 @@ export default function Header() {
               </a>
               <a href="##" className="navbar-item">
                 <FaUser />
-                <span> dasjideepak</span>
+                <span onClick={(e) => handleLogout(e)}>Logout</span>
               </a>
             </div>
           ) : (
             <div className="navbar-end">
               <div className="navbar-item">
                 <div className="buttons">
-                  <a href="##" className="button is-primary">
+                  <NavLink to="/" className="button is-primary">
                     Home
-                  </a>
-                  <a href="##" className="button is-info">
+                  </NavLink>
+                  <NavLink to="/signup" className="button is-info">
                     <strong>Sign up</strong>
-                  </a>
+                  </NavLink>
                   <a href="##" className="button is-link">
                     Log in
                   </a>
