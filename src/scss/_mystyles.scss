@@ -113,8 +113,35 @@ header {
   background-color: rgb(1, 30, 56);
 }
 
-// Header
+// login-signup-sec
+
+.login-signup-sec {
+  background-color: rgb(226, 224, 224);
+  padding: 240px;
+  .form-container {
+    background-color: white;
+    padding: 36px;
+    width: 440px;
+    margin: 0 auto;
+    border-radius: 4px;
+  }
+}
+
+// footer
 footer {
   background-color: rgb(243, 243, 243);
   padding: 12px 0;
+}
+
+.err-msg {
+  color: red;
+  padding-left: 2px;
+  font-size: 0.9rem;
+}
+
+.button-signup {
+  width: 120px;
+}
+.button-loader {
+  padding-left: 8px;
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import useFetch from "./hooks/useFetch";
+import { useFetch } from "./hooks/handleFetch";
 import { v4 as uuid } from "uuid";
 import LoaderPage from "./LoaderPage";
 
@@ -9,7 +9,7 @@ export default function Articles() {
   const { data, error, isLoading } = useFetch(URL_TO_FETCH_ARTICLES);
 
   if (data) {
-    console.log(data.articles);
+    // console.log(data.articles);
     return (
       <main className="articles-sec padding">
         {data.articles.map((article) => (
