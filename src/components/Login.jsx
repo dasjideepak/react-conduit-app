@@ -1,15 +1,16 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { useFetchPost } from "./hooks/handleFetch";
 
-export default function Login(props) {
+function Login(props) {
   const [state, setState] = useFetchPost();
   const { isLoading, data, error } = state;
 
   if (data?.user) {
     localStorage.setItem("authToken", data.user.token);
+    props.history.push("/");
   }
 
   const formik = useFormik({
@@ -102,3 +103,5 @@ export default function Login(props) {
     </form>
   );
 }
+
+export default withRouter(Login);

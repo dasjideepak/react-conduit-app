@@ -1,16 +1,18 @@
 import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
 import { useFetchPost } from "./hooks/handleFetch";
 
-export default function SignUp(props) {
+function SignUp(props) {
   const [state, setState] = useFetchPost();
   const { isLoading, data, error } = state;
 
   if (data?.user) {
     localStorage.setItem("authToken", state.data.user.token);
+    props.history.push("/");
   }
+
   const formik = useFormik({
     initialValues: {
       username: "",
@@ -137,3 +139,5 @@ export default function SignUp(props) {
     </form>
   );
 }
+
+export default withRouter(SignUp);
