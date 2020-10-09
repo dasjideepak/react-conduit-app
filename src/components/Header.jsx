@@ -3,15 +3,13 @@ import { NavLink } from "react-router-dom";
 import { FaRegEdit } from "react-icons/fa";
 import { IoIosSettings } from "react-icons/io";
 import { FaUser } from "react-icons/fa";
-import { useHistory } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 
-export default function Header(props) {
-  const history = useHistory();
-
+function Header(props) {
   function handleLogout(e) {
     e.preventDefault();
     localStorage.clear();
-    history.push("/");
+    props.history.push("/");
   }
 
   return (
@@ -81,3 +79,5 @@ export default function Header(props) {
     </header>
   );
 }
+
+export default withRouter(Header);
