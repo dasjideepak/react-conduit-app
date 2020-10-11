@@ -18,8 +18,9 @@
     "yup": "^0.29.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "prestart": "tailwind build ./src/stylesheets/tailwind.css -c ./tailwind.config.js -o ./src/stylesheets/main.css",
+    "start": "react-scripts start ",
+    "build": "react-scripts start ",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -39,7 +40,7 @@
     ]
   },
   "devDependencies": {
-    "bulma": "^0.9.1",
-    "node-sass": "^4.14.1"
+    "autoprefixer": "^10.0.1",
+    "tailwindcss": "^1.8.13"
   }
 }

@@ -1,83 +1,94 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { FaRegEdit } from "react-icons/fa";
-import { IoIosSettings } from "react-icons/io";
-import { FaUser } from "react-icons/fa";
 import { withRouter } from "react-router-dom";
 
 function Header(props) {
-  function handleLogout(e) {
-    e.preventDefault();
-    localStorage.clear();
-    props.history.push("/");
-  }
+  // function handleLogout(e) {
+  //   e.preventDefault();
+  //   localStorage.clear();
+  //   props.history.push("/");
+  // }
 
   return (
-    <header>
-      <nav
-        className="navbar container"
-        role="navigation"
-        aria-label="main navigation"
-      >
-        <div className="navbar-brand">
-          <NavLink to="/" className="navbar-item">
-            <img src="/images/logo.png" alt="logo-img" />
-          </NavLink>
-
-          <a
-            href="##"
-            role="button"
-            className="navbar-burger burger"
-            aria-label="menu"
-            aria-expanded="false"
-            data-target="navbarBasicExample"
+    <header className="text-white body-font bg-gray-800">
+      <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
+        <a
+          href="##"
+          className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            stroke="currentColor"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            className="w-10 h-10 text-white p-2 bg-indigo-500 rounded-full"
+            viewBox="0 0 24 24"
           >
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+          </svg>
+          <span className="ml-3 text-xl text-white">Conduit</span>
+        </a>
+        <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
+          <a href="##" className="mr-5 hover:text-gray-400">
+            Home
           </a>
-        </div>
-
-        <div id="navbarBasicExample" className="navbar-menu">
           {localStorage.authToken ? (
-            <div className="navbar-end">
-              <NavLink to="/" className="navbar-item">
-                Home
-              </NavLink>
-              <a href="##" className="navbar-item">
-                <FaRegEdit />
-                <span>New Post</span>
+            <>
+              <a href="##" className="mr-5 hover:text-gray-400">
+                Create New Article
               </a>
-              <a href="##" className="navbar-item">
-                <IoIosSettings />
-                <span>Setting</span>
+              <a href="##" className="mr-5 hover:text-gray-400">
+                Setting
               </a>
-              <a href="##" className="navbar-item">
-                <FaUser />
-                <span onClick={(e) => handleLogout(e)}>Logout</span>
-              </a>
-            </div>
+              <img
+                src="https://avatars2.githubusercontent.com/u/38307844?s=460&u=f545a10c52359525a21efe75562a272f241ab57d&v=4"
+                alt="user-avatar"
+                width="40px"
+                className="rounded-full cursor-pointer"
+              />
+            </>
           ) : (
-            <div className="navbar-end">
-              <div className="navbar-item">
-                <div className="buttons">
-                  <NavLink to="/" className="button is-primary">
-                    Home
-                  </NavLink>
-                  <NavLink to="/signup" className="button is-info">
-                    <strong>Sign up</strong>
-                  </NavLink>
-                  <NavLink to="/login" className="button is-link">
-                    Log in
-                  </NavLink>
-                </div>
-              </div>
-            </div>
+            <>
+              <NavLink
+                to="##"
+                className="px-8 py-2 rounded-md text-md font-medium leading-5 text-white bg-indigo-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out hover:bg-indigo-600"
+              >
+                Signup
+              </NavLink>
+              <NavLink
+                to="##"
+                className="px-8 py-2 rounded-md text-md font-medium leading-5 text-white bg-indigo-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out ml-4 hover:bg-indigo-600"
+              >
+                Login
+              </NavLink>
+            </>
           )}
-        </div>
-      </nav>
+        </nav>
+      </div>
     </header>
   );
 }
 
 export default withRouter(Header);
+
+//       {localStorage.authToken ? (
+//         <div className="navbar-end">
+//           <NavLink to="/" className="navbar-item">
+//             Home
+//           </NavLink>
+//           <a href="##" className="navbar-item">
+//             <FaRegEdit />
+//             <span>New Post</span>
+//           </a>
+//           <a href="##" className="navbar-item">
+//             <IoIosSettings />
+//             <span>Setting</span>
+//           </a>
+//           <a href="##" className="navbar-item">
+//             <FaUser />
+//             <span onClick={(e) => handleLogout(e)}>Logout</span>
+//           </a>
+//         </div>
+//       ) : (
