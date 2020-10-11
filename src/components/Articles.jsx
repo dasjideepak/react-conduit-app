@@ -23,7 +23,6 @@ export default function Articles() {
                     "0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset",
                 }}
               >
-                {console.log(article)}
                 <span className="inline-block py-1 px-3 rounded bg-pink-100 text-indigo-700 text-sm font-bold">
                   {article.tagList[0]}
                 </span>
