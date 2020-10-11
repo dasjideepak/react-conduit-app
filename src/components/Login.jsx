@@ -32,39 +32,50 @@ function Login(props) {
   });
 
   return (
-    <form className="login-signup-sec" onSubmit={formik.handleSubmit}>
-      <div className="form-container">
-        <h1 className="text-center">Login Page</h1>
-        <NavLink to="/signup">Create an account</NavLink>
-        <div className="field">
-          <p className="control has-icons-left has-icons-right">
+    <form className="my-40" onSubmit={formik.handleSubmit}>
+      <div
+        className="flex justify-between mx-auto rounded-lg"
+        style={{
+          width: "1080px",
+          boxShadow:
+            "0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23)",
+        }}
+      >
+        <div className="w-1/2 flex justify-center items-center flex-col py-24">
+          <img src="/images/login.svg" alt="login-img" width="90%" />
+        </div>
+        <div className="w-1/2 flex justify-center flex-col p-24">
+          <h1 className="text-center text-indigo-700 text-3xl leading-9 font-extrabold tracking-tight sm:text-4xl sm:leading-10 text-cente">
+            Login Page
+          </h1>
+          <NavLink
+            className="text-center  sm:text-1xl text-1xl title-font font-bold text-indigo-600 mt-4 mb-4"
+            to="/signup"
+          >
+            Create an account
+          </NavLink>
+          <div className="py-2 flex flex-col" width="100%">
             <input
-              className="input"
+              className="border-2 px-4 py-2 rounded-full active:border-4-red"
               type="email"
               name="email"
               placeholder="Email"
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.email}
+              width="100%"
             />
             {formik.touched.email && formik.errors.email ? (
-              <span className="err-msg">{formik.errors.email}</span>
+              <span className="text-red-500 text-sm pl-1 font-medium">
+                {formik.errors.email}
+              </span>
             ) : (
               false
             )}
-
-            <span className="icon is-small is-left">
-              <i className="fas fa-envelope"></i>
-            </span>
-            <span className="icon is-small is-right">
-              <i className="fas fa-check"></i>
-            </span>
-          </p>
-        </div>
-        <div className="field">
-          <p className="control has-icons-left">
+          </div>
+          <div className="py-2 flex flex-col">
             <input
-              className="input"
+              className="border-2 px-4 py-2 rounded-full"
               type="password"
               name="password"
               placeholder="Password"
@@ -72,32 +83,59 @@ function Login(props) {
               onBlur={formik.handleBlur}
               value={formik.values.password}
             />
+
             {formik.touched.password && formik.errors.password ? (
-              <span className="err-msg">{formik.errors.password}</span>
+              <span className="text-red-500 text-sm font-medium pl-1">
+                {formik.errors.password}
+              </span>
             ) : (
               false
             )}
-            <span className="icon is-small is-left">
-              <i className="fas fa-lock"></i>
-            </span>
-          </p>
-        </div>
-        <div className="field">
-          {error ? <h1>Something went wrong...</h1> : false}
-          <p className="control text-center">
+          </div>
+          <div className="py-2 flex flex-col">
+            {error ? (
+              <h1 className="text-center text-red-700 pb-2">
+                Invalid email or password
+              </h1>
+            ) : (
+              false
+            )}
             {isLoading ? (
               <button
-                className="button is-success is-loading button-signup"
-                disabled
+                type="submit"
+                className="px-16 py-2 rounded-full text-md font-medium leading-5 text-white bg-indigo-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out hover:bg-indigo-600 mx-12"
               >
-                Loading
+                Login
               </button>
             ) : (
-              <button type="submit" className="button is-success button-signup">
-                <span>Login</span>
+              <button
+                type="submit"
+                className="transition duration-500 ease-in-out px-16 py-2 rounded-full text-md font-medium leading-5 text-white bg-indigo-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out hover:bg-indigo-600 mx-12"
+              >
+                Login
               </button>
             )}
-          </p>
+          </div>
+          <div className="text-center">
+            <NavLink
+              to="/"
+              className="text-sm text-indigo-700 font-bold inline-flex items-center hover:text-indigo-500"
+            >
+              Forget Password?
+              <svg
+                className="w-4 h-4 ml-1"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth="2"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M5 12h14"></path>
+                <path d="M12 5l7 7-7 7"></path>
+              </svg>
+            </NavLink>
+          </div>
         </div>
       </div>
     </form>

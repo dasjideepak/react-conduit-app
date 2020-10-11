@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 export default function HomeHeroSec() {
   return (
@@ -6,24 +7,49 @@ export default function HomeHeroSec() {
       <section className="text-gray-700 body-font flex justify-between py-12 container">
         <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
           <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-            <h1 className="text-indigo-700 text-3xl leading-9 font-extrabold tracking-tight sm:text-4xl sm:leading-10 text-cente">
+            <h1 className="text-indigo-700 text-6xl leading-none font-extrabold tracking-tight sm:text-5xl sm:leading-none">
               Expand your reading
               <br className="hidden lg:inline-block" />
               Expand your mind.
             </h1>
-            <p className="mb-8 leading-relaxed">
+            <p className="mt-4 mb-8 leading-relaxed">
               Conduit is not like any other platform on the internet. Our sole
               purpose is to help you find compelling ideas, knowledge, and
               perspectives. We don’t serve ads—we serve you, the curious reader
               who loves to learn new things.
             </p>
             <div className="flex justify-center">
-              <button className="inline-flex text-white bg-indigo-700 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
-                Sign Up
-              </button>
-              <button className="ml-4 inline-flex text-gray-700 bg-gray-200 border-0 py-2 px-6 focus:outline-none hover:bg-gray-300 rounded text-lg">
-                Login
-              </button>
+              {localStorage.authToken ? (
+                <>
+                  <NavLink
+                    to="/"
+                    className="inline-flex text-white bg-indigo-700 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+                  >
+                    Your Articles
+                  </NavLink>
+                  <NavLink
+                    to="/"
+                    className="ml-4 inline-flex text-gray-700 bg-gray-200 border-0 py-2 px-6 focus:outline-none hover:bg-gray-300 rounded text-lg"
+                  >
+                    Create New Article
+                  </NavLink>
+                </>
+              ) : (
+                <>
+                  <NavLink
+                    to="/signup"
+                    className="inline-flex text-white bg-indigo-700 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
+                  >
+                    Browse
+                  </NavLink>
+                  <NavLink
+                    to="/login"
+                    className="ml-4 inline-flex text-gray-700 bg-gray-200 border-0 py-2 px-6 focus:outline-none hover:bg-gray-300 rounded text-lg"
+                  >
+                    Login
+                  </NavLink>
+                </>
+              )}
             </div>
           </div>
         </div>

@@ -12,8 +12,8 @@ function Header(props) {
   return (
     <header className="text-white body-font bg-gray-800">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-        <a
-          href="##"
+        <NavLink
+          to="/"
           className="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0"
         >
           <svg
@@ -29,9 +29,9 @@ function Header(props) {
             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
           </svg>
           <span className="ml-3 text-xl text-white">Conduit</span>
-        </a>
+        </NavLink>
         <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-          <a href="##" className="mr-5 hover:text-gray-400">
+          <a href="/" className="mr-5 hover:text-gray-400">
             Home
           </a>
           {localStorage.authToken ? (
@@ -52,14 +52,14 @@ function Header(props) {
           ) : (
             <>
               <NavLink
-                to="##"
-                className="px-8 py-2 rounded-md text-md font-medium leading-5 text-white bg-indigo-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out hover:bg-indigo-600"
+                to="/signup"
+                className="transition duration-500 ease-in-out px-8 py-2 rounded-md text-md font-medium leading-5 text-white bg-indigo-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out hover:bg-indigo-600"
               >
                 Signup
               </NavLink>
               <NavLink
-                to="##"
-                className="px-8 py-2 rounded-md text-md font-medium leading-5 text-white bg-indigo-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out ml-4 hover:bg-indigo-600"
+                to="/login"
+                className="transition duration-500 ease-in-out px-8 py-2 rounded-md text-md font-medium leading-5 text-white bg-indigo-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out ml-4 hover:bg-indigo-600"
               >
                 Login
               </NavLink>

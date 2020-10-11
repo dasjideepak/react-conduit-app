@@ -43,7 +43,10 @@ export default function Feedback() {
               className="bg-white rounded border border-gray-400 focus:outline-none h-32 focus:border-pink-500 text-base px-4 py-2 mb-4 resize-none"
               placeholder="Message"
             ></textarea>
-            <button className="text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg">
+            <button
+              type="submit"
+              className="text-white bg-pink-500 border-0 py-2 px-6 focus:outline-none hover:bg-pink-600 rounded text-lg"
+            >
               Button
             </button>
             <p className="text-xs text-gray-500 mt-3">
