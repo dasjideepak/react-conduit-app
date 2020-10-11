@@ -8,8 +8,13 @@ import Testmonials from "../components/Testmonials";
 import Feedback from "../components/Feedback";
 import ShowUpdates from "../components/ShowUpdates";
 import RecentArticlesHeading from "../components/RecentArticlesHeading";
+import { useEffect } from "react";
 
 export default function HomePage() {
+  useEffect(() => {
+    document.title = "Home | Conduit";
+  }, []);
+
   return (
     <div>
       <Header />

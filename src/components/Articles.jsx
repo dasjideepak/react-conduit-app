@@ -23,10 +23,11 @@ export default function Articles() {
                     "0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset",
                 }}
               >
-                <span className="inline-block py-1 px-3 rounded bg-pink-100 text-indigo-700 text-sm font-medium tracking-widest">
+                {console.log(article)}
+                <span className="inline-block py-1 px-3 rounded bg-pink-100 text-indigo-700 text-sm font-bold">
                   {article.tagList[0]}
                 </span>
-                <h2 className="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-4 mb-4">
+                <h2 className="sm:text-2xl text-2xl title-font font-bold text-gray-900 mt-4 mb-4">
                   {article.title}
                 </h2>
                 {article.description.length > 200 ? (
@@ -57,7 +58,7 @@ export default function Articles() {
                     </svg>
                   </a>
                   <span className="text-gray-600 mr-3 inline-flex items-center ml-auto leading-none text-sm pr-3">
-                    <p>{article.createdAt}</p>
+                    <p>{article.createdAt.split("T")[0]}</p>
                   </span>
                 </div>
                 <a href="##" className="inline-flex items-center">

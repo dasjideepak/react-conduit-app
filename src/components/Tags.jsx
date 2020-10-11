@@ -35,7 +35,7 @@ export default function Tags() {
               <a
                 href="##"
                 key={uuid()}
-                className="m-1 py-2 px-2 bg-gray-200 rounded-full flex items-center"
+                className="m-1 py-2 pl-1 pr-3 bg-gray-200 rounded-full flex items-center"
               >
                 <svg width="30" height="24" viewBox="0 0 30 30" fill="none">
                   <circle cx="15" cy="15" r="15" fill="#1E1B1D"></circle>
