@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { NavLink, withRouter } from "react-router-dom";
 import { useFetchPost } from "./hooks/handleFetch";
+import Notification from "./Notification";
 
 function SignUp(props) {
   const [state, setState] = useFetchPost();
@@ -101,16 +102,18 @@ function SignUp(props) {
             )}
           </div>
           <div className="py-2 flex flex-col">
-            <input
-              className="border-2 px-4 py-2 rounded-full"
-              type="password"
-              name="password"
-              placeholder="Password"
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              value={formik.values.password}
-            />
-
+            <div>
+              <input
+                className="border-2 px-4 py-2 rounded-full"
+                type="password"
+                name="password"
+                placeholder="Password"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.password}
+              />
+              <span style={{ cursor: "pointer", fontSize: "36px" }}>*</span>
+            </div>
             {formik.touched.password && formik.errors.password ? (
               <span className="text-red-500 text-sm font-medium pl-1">
                 {formik.errors.password}
@@ -148,6 +151,11 @@ function SignUp(props) {
           <img src="/images/signup.svg" alt="login-img" width="90%" />
         </div>
       </div>
+      {error ? (
+        <Notification type="error" message={"Something went wrong"} />
+      ) : (
+        false
+      )}
     </form>
   );
 }
