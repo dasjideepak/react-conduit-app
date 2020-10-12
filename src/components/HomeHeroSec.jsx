@@ -12,11 +12,15 @@ export default function HomeHeroSec() {
               <br className="hidden lg:inline-block" />
               Expand your mind.
             </h1>
-            <p className="mt-4 mb-8 leading-relaxed">
+            <p className="mt-4 mb-2 leading-relaxed">
               Conduit is not like any other platform on the internet. Our sole
               purpose is to help you find compelling ideas, knowledge, and
-              perspectives. We don’t serve ads—we serve you, the curious reader
-              who loves to learn new things.
+              perspectives
+            </p>
+            <p className="mt-2 mb-4 leading-relaxed">
+              Conduit is home to thousands of independent voices, and we combine
+              humans and technology to find the best reading for you—and filter
+              out the rest.
             </p>
             <div className="flex justify-center">
               {localStorage.authToken ? (
@@ -40,7 +44,7 @@ export default function HomeHeroSec() {
                     to="/signup"
                     className="inline-flex text-white bg-indigo-700 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
                   >
-                    Browse
+                    Signup
                   </NavLink>
                   <NavLink
                     to="/login"

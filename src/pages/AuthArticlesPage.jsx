@@ -1,8 +1,6 @@
 import React from "react";
-import Header from "../components/Header";
 import Articles from "../components/Articles";
 import Tags from "../components/Tags";
-import Footer from "../components/Footer";
 import YourFeed from "../components/YourFeed";
 import { useState } from "react";
 
@@ -10,25 +8,31 @@ export default function AuthArticlesPage() {
   const [state, setState] = useState(<Articles />);
 
   return (
-    <div>
-      <Header />
-      <div className="homepage-main-sec padding">
-        <div className="container justify-between">
-          <div className="articles-feed">
-            <div className="border-feed">
-              <span className="feed-tab" onClick={() => setState(<YourFeed />)}>
-                Your Feed
-              </span>
-              <span className="feed-tab" onClick={() => setState(<Articles />)}>
-                Global Feed
-              </span>
-            </div>
-            <div>{state}</div>
+    <div className="homepage-main-sec padding">
+      <div className="container justify-between">
+        <div className="py-4">
+          <div className="border-b-2">
+            <button
+              type="button"
+              className="text-indigo-600 text-xl leading-9 font-extrabold tracking-tight sm:text-xl sm:leading-10 px-4 border-l-2 border-t-2"
+              onClick={() => setState(<YourFeed />)}
+            >
+              Your Feed
+            </button>
+            <button
+              type="button"
+              className="text-indigo-600 text-xl leading-9 font-extrabold tracking-tight sm:text-xl sm:leading-10 px-4 border-l-2 border-t-2 border-r-2"
+              onClick={() => setState(<Articles />)}
+            >
+              Global Feed
+            </button>
           </div>
-          <Tags />
+          <div className="pt-12">
+            <Tags />
+          </div>
+          <div>{state}</div>
         </div>
       </div>
-      <Footer />
     </div>
   );
 }

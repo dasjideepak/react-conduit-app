@@ -3,11 +3,12 @@ import { NavLink } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 
 function Header(props) {
-  // function handleLogout(e) {
-  //   e.preventDefault();
-  //   localStorage.clear();
-  //   props.history.push("/");
-  // }
+  function handleLogout(e) {
+    e.preventDefault();
+    localStorage.clear();
+    props.setIsLogged(false);
+    props.history.push("/");
+  }
 
   return (
     <header className="text-white body-font bg-gray-800">
@@ -34,11 +35,11 @@ function Header(props) {
           <a href="/" className="mr-5 hover:text-gray-400">
             Home
           </a>
-          {localStorage.authToken ? (
+          {props.isLogged ? (
             <>
-              <a href="##" className="mr-5 hover:text-gray-400">
+              <NavLink to="/create" className="mr-5 hover:text-gray-400">
                 Create New Article
-              </a>
+              </NavLink>
               <a href="##" className="mr-5 hover:text-gray-400">
                 Setting
               </a>
@@ -47,19 +48,20 @@ function Header(props) {
                 alt="user-avatar"
                 width="40px"
                 className="rounded-full cursor-pointer"
+                onClick={(e) => handleLogout(e)}
               />
             </>
           ) : (
             <>
               <NavLink
                 to="/signup"
-                className="transition duration-500 ease-in-out px-8 py-2 rounded-md text-md font-medium leading-5 text-white bg-indigo-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out hover:bg-indigo-600"
+                className="transition duration-500 ease-in-out px-8 py-2 rounded-md text-md font-medium leading-5 text-white bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-500 transition duration-150 ease-in-out hover:bg-indigo-600"
               >
                 Signup
               </NavLink>
               <NavLink
                 to="/login"
-                className="transition duration-500 ease-in-out px-8 py-2 rounded-md text-md font-medium leading-5 text-white bg-indigo-700 focus:outline-none focus:text-white focus:bg-gray-700 transition duration-150 ease-in-out ml-4 hover:bg-indigo-600"
+                className="transition duration-500 ease-in-out px-8 py-2 rounded-md text-md font-medium leading-5 text-white bg-indigo-700 focus:outline-none focus:text-white focus:bg-indigo-500 transition duration-150 ease-in-out ml-4 hover:bg-indigo-600"
               >
                 Login
               </NavLink>
@@ -72,23 +74,3 @@ function Header(props) {
 }
 
 export default withRouter(Header);
-
-//       {localStorage.authToken ? (
-//         <div className="navbar-end">
-//           <NavLink to="/" className="navbar-item">
-//             Home
-//           </NavLink>
-//           <a href="##" className="navbar-item">
-//             <FaRegEdit />
-//             <span>New Post</span>
-//           </a>
-//           <a href="##" className="navbar-item">
-//             <IoIosSettings />
-//             <span>Setting</span>
-//           </a>
-//           <a href="##" className="navbar-item">
-//             <FaUser />
-//             <span onClick={(e) => handleLogout(e)}>Logout</span>
-//           </a>
-//         </div>
-//       ) : (

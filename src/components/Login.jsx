@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { NavLink, withRouter } from "react-router-dom";
 import { useFetchPost } from "./hooks/handleFetch";
+import Notification from "./Notification";
 
 function Login(props) {
   const [state, setState] = useFetchPost();
@@ -10,7 +11,13 @@ function Login(props) {
 
   if (data?.user) {
     localStorage.setItem("authToken", data.user.token);
+    props.setIsLogged(true);
     props.history.push("/");
+  }
+
+  if (data?.error) {
+    props.setIsLogged(false);
+    props.history.push("/login");
   }
 
   const formik = useFormik({
@@ -138,6 +145,7 @@ function Login(props) {
           </div>
         </div>
       </div>
+      <Notification type="error" message={"Something went wrong"} />
     </form>
   );
 }
