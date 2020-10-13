@@ -22,10 +22,18 @@ function useFetchPost() {
   const [state, setState] = useState({ value: null, url: "" });
 
   const ROOT_URL = "https://mighty-oasis-08080.herokuapp.com/";
+  let article = {
+    article: {
+      title: "How to train your dragon",
+      description: "Ever wonder how?",
+      body: "You have to believe",
+      tagList: ["reactjs", "angularjs", "dragons"],
+    },
+  };
 
   useEffect(() => {
     if (state.url && state.value) {
-      console.log(ROOT_URL + state.url, state.value, state.headers);
+      console.log(ROOT_URL + state.url, article, state.headers);
       setIsLoading(true);
 
       fetch(ROOT_URL + state.url, {
@@ -36,7 +44,7 @@ function useFetchPost() {
         body: JSON.stringify(state.value),
       })
         .then((result) => result.json())
-        .then((result) => setData(result))
+        .then((result) => setData(result.data))
         .catch((error) => setError(error))
         .finally(() => setIsLoading(false));
     }

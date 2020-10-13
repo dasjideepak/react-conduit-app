@@ -54,10 +54,10 @@ export default function CreateArticle() {
       onSubmit={formik.handleSubmit}
     >
       <div className="w-2/4 mx-auto my-16 bg-white flex flex-col">
-        <h2 className="text-center text-indigo-700 text-2xl pb-1 leading-none font-extrabold tracking-tight sm:text-2xl sm:leading-no">
+        <h2 className="text-indigo-700 text-2xl pb-1 leading-none font-extrabold tracking-tight sm:text-2xl sm:leading-no">
           Create New Article
         </h2>
-        <p className="text-center leading-relaxed mb-5 text-gray-600">
+        <p className="leading-relaxed mb-5 text-gray-600">
           Fill all the required details
         </p>
         <input
