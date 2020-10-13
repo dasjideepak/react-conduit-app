@@ -3,7 +3,6 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { NavLink, withRouter } from "react-router-dom";
 import { useFetchPost } from "./hooks/handleFetch";
-import Notification from "./Notification";
 
 function Login(props) {
   const [state, setState] = useFetchPost();
@@ -166,7 +165,16 @@ function Login(props) {
           </div>
           <div className="text-center select-none">
             <NavLink
-              to="/"
+              to="##"
+              onClick={() =>
+                props.setNotification([
+                  ...[props.notifications],
+                  {
+                    type: "error",
+                    message: "Invalid user details",
+                  },
+                ])
+              }
               className="text-sm text-indigo-700 font-bold inline-flex items-center hover:text-indigo-500"
             >
               Forget Password?
@@ -186,7 +194,6 @@ function Login(props) {
           </div>
         </div>
       </div>
-      <Notification type="error" message={"Something went wrong"} />
     </form>
   );
 }

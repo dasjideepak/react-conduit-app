@@ -3,7 +3,6 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { NavLink, withRouter } from "react-router-dom";
 import { useFetchPost } from "./hooks/handleFetch";
-import Notification from "./Notification";
 
 function SignUp(props) {
   const [state, setState] = useFetchPost();
@@ -45,7 +44,7 @@ function SignUp(props) {
   });
 
   return (
-    <form className="my-40" onSubmit={formik.handleSubmit}>
+    <form className="my-40" onSubmit={formik.handleSubmit} select-none>
       <div
         className="flex justify-between mx-auto rounded-lg"
         style={{
@@ -190,11 +189,6 @@ function SignUp(props) {
           <img src="/images/signup.svg" alt="login-img" width="90%" />
         </div>
       </div>
-      {error ? (
-        <Notification type="error" message={"Something went wrong"} />
-      ) : (
-        false
-      )}
     </form>
   );
 }
