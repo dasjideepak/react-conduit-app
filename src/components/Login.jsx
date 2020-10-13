@@ -8,9 +8,11 @@ function Login(props) {
   const [state, setState] = useFetchPost();
   const { isLoading, data, error } = state;
   const [showPassword, SetPasswordVisibility] = useState(false);
+  console.log(props.notifications);
 
-  if (data?.user) {
+  if (data) {
     localStorage.setItem("authToken", data.user.token);
+    props.setUser(data.user);
     props.setIsLogged(true);
     props.history.push("/");
   }
@@ -32,8 +34,11 @@ function Login(props) {
     validateOnMount: true,
     onSubmit: (values) => {
       setState({
+        url: "api/users/login",
+        headers: {
+          "Content-Type": "application/json",
+        },
         value: { user: values },
-        url: "https://mighty-oasis-08080.herokuapp.com/api/users/login",
       });
     },
   });
@@ -164,15 +169,15 @@ function Login(props) {
             )}
           </div>
           <div className="text-center select-none">
-            <NavLink
-              to="##"
+            <button
               onClick={() =>
                 props.setNotification([
-                  ...[props.notifications],
                   {
-                    type: "error",
+                    type: "success",
                     message: "Invalid user details",
+                    time: Date.now(),
                   },
+                  ...props.notifications,
                 ])
               }
               className="text-sm text-indigo-700 font-bold inline-flex items-center hover:text-indigo-500"
@@ -190,7 +195,7 @@ function Login(props) {
                 <path d="M5 12h14"></path>
                 <path d="M12 5l7 7-7 7"></path>
               </svg>
-            </NavLink>
+            </button>
           </div>
         </div>
       </div>

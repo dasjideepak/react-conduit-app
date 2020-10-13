@@ -13,6 +13,7 @@ export default function SignupPage(props) {
         setIsLogged={props.setIsLogged}
         setNotification={props.setNotification}
         notifications={props.notifications}
+        setUser={props.setUser}
       />
     </>
   );
@@ -22,4 +23,5 @@ Login.propTypes = {
   setIsLogged: PropTypes.func,
   setNotification: PropTypes.func,
   notifications: PropTypes.array,
+  setUser: PropTypes.func,
 };

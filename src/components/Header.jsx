@@ -40,15 +40,20 @@ function Header(props) {
               <NavLink to="/create" className="mr-5 hover:text-gray-400">
                 Create New Article
               </NavLink>
-              <a href="##" className="mr-5 hover:text-gray-400">
+              <NavLink to="/user/update" className="mr-5 hover:text-gray-400">
                 Setting
-              </a>
+              </NavLink>
+              <button
+                className="mr-5 hover:text-gray-400"
+                onClick={(e) => handleLogout(e)}
+              >
+                Logout
+              </button>
               <img
                 src="https://avatars2.githubusercontent.com/u/38307844?s=460&u=f545a10c52359525a21efe75562a272f241ab57d&v=4"
                 alt="user-avatar"
                 width="40px"
                 className="rounded-full cursor-pointer"
-                onClick={(e) => handleLogout(e)}
               />
             </>
           ) : (
