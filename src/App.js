@@ -8,10 +8,24 @@ import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
 import AuthArticlesPage from "./pages/AuthArticlesPage";
 import CreateArticlePage from "./pages/CreateArticlePage";
+// import Notifications from "./components/Notifications";
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
-  const [notification, setNotification] = useState([]);
+  const [notifications, setNotification] = useState([
+    {
+      type: "error",
+      message: "Something went wrong!",
+    },
+    {
+      type: "error",
+      message: "Something went wrong!",
+    },
+    {
+      type: "success",
+      message: "Account Created Successfully",
+    },
+  ]);
 
   useEffect(() => {
     if (localStorage.authToken) {
@@ -29,14 +43,25 @@ function App() {
           <Route exact path="/" component={HomePage} />
         )}
         <Route exact path="/signup">
-          <SignupPage />
+          <SignupPage
+            setNotification={setNotification}
+            notifications={notifications}
+          />
         </Route>
         <Route exact path="/login">
-          <LoginPage setIsLogged={setIsLogged} />
+          <LoginPage
+            setIsLogged={setIsLogged}
+            setNotification={setNotification}
+            notifications={notifications}
+          />
         </Route>
         <Route exact path="/create">
-          <CreateArticlePage />
+          <CreateArticlePage
+            setNotification={setNotification}
+            notifications={notifications}
+          />
         </Route>
+        {/* <Notifications notifications={notifications} /> */}
         <Footer />
       </Router>
     </>

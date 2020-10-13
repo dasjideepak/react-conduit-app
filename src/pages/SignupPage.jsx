@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import Signup from "../components/SignUp";
+import PropTypes from "prop-types";
 
 export default function SignupPage(props) {
   useEffect(() => {
@@ -7,7 +8,15 @@ export default function SignupPage(props) {
   }, []);
   return (
     <>
-      <Signup />
+      <Signup
+        setNotification={props.setNotification}
+        notifications={props.notifications}
+      />
     </>
   );
 }
+
+SignupPage.propTypes = {
+  setNotification: PropTypes.func,
+  notifications: PropTypes.array,
+};
