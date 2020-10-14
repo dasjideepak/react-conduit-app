@@ -11,6 +11,7 @@ export default function SignupPage(props) {
       <Signup
         setNotification={props.setNotification}
         notifications={props.notifications}
+        setIsLogged={props.setIsLogged}
       />
     </>
   );

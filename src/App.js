@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Redirect,
+  Route,
+  Switch,
+} from "react-router-dom";
 
 import DeleteModal from "./components/DeleteModal";
 import Header from "./components/Header";
@@ -25,46 +30,59 @@ function App() {
     }
   }, []);
 
+  function RequireAuth({ children }) {
+    if (!isLogged) {
+      return <Redirect to="/" />;
+    } else {
+      return children;
+    }
+  }
+
   return (
-    <>
-      <ToastProvider>
-        <Router>
-          <Header isLogged={isLogged} setIsLogged={setIsLogged} user={user} />
+    <ToastProvider>
+      <Router>
+        <Header isLogged={isLogged} setIsLogged={setIsLogged} user={user} />
+        <Switch>
           {isLogged ? (
             <Route exact path="/" component={AuthArticlesPage} />
           ) : (
             <Route exact path="/" component={HomePage} />
           )}
           <Route exact path="/signup">
-            <SignupPage />
+            <SignupPage setIsLogged={setIsLogged} setUser={setUser} />
           </Route>
           <Route exact path="/login">
             <LoginPage setIsLogged={setIsLogged} setUser={setUser} />
           </Route>
-          <Route exact path="/create">
-            <CreateArticlePage />
-          </Route>
-          <Route exact path="/user/update">
-            <UpdateProfilePage user={user} />
-          </Route>
           <Route exact path="/article/:slug">
-            <SingleArticlePage
-              user={user}
-              setIsDeleteModalVisibile={setIsDeleteModalVisibile}
-            />
-          </Route>
-          <Route exact path="/articles/:slug">
-            <UpdateArticlePage user={user} />
+            {isLogged ? (
+              <SingleArticlePage
+                user={user}
+                setIsDeleteModalVisibile={setIsDeleteModalVisibile}
+              />
+            ) : (
+              <SingleArticlePage />
+            )}
           </Route>
           {isDeleteModalVisible ? (
             <DeleteModal setIsDeleteModalVisibile={setIsDeleteModalVisibile} />
           ) : (
             false
           )}
-          <Footer />
-        </Router>
-      </ToastProvider>
-    </>
+
+          <RequireAuth>
+            <Route exact path="/create" component={CreateArticlePage} />
+            <Route exact path="/user/update">
+              <UpdateProfilePage user={user} />
+            </Route>
+            <Route exact path="/articles/:slug">
+              <UpdateArticlePage user={user} />
+            </Route>
+          </RequireAuth>
+        </Switch>
+        <Footer />
+      </Router>
+    </ToastProvider>
   );
 }
 

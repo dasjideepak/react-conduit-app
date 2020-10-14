@@ -5,5 +5,10 @@ export default function SingleArticlePage(props) {
   useEffect(() => {
     document.title = "Article | Conduit";
   }, []);
-  return <Article setIsDeleteModalVisibile={props.setIsDeleteModalVisibile} />;
+  return (
+    <Article
+      setIsDeleteModalVisibile={props.setIsDeleteModalVisibile}
+      user={props.user}
+    />
+  );
 }
