@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Articles from "../components/Articles";
 import Tags from "../components/Tags";
 import YourFeed from "../components/YourFeed";
@@ -6,6 +6,9 @@ import { useState } from "react";
 
 export default function AuthArticlesPage() {
   const [state, setState] = useState(<Articles />);
+  useEffect(() => {
+    document.title = "Dashboard | Conduit";
+  }, []);
 
   return (
     <div className="homepage-main-sec padding">

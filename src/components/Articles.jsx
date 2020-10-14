@@ -2,6 +2,7 @@ import React from "react";
 import { useFetch } from "./hooks/handleFetch";
 import { v4 as uuid } from "uuid";
 import LoaderPage from "./LoaderPage";
+import { NavLink } from "react-router-dom";
 
 export default function Articles() {
   const URL_TO_FETCH_ARTICLES =
@@ -14,7 +15,8 @@ export default function Articles() {
         <div className="container p-4 mx-auto">
           <div className="flex flex-wrap justify-between">
             {data.articles.map((article) => (
-              <div
+              <NavLink
+                to={`/article/${article.slug}`}
                 className="px-12 py-8 md:w-full flex flex-col items-start mb-16 rounded-lg"
                 key={uuid()}
                 style={{
@@ -38,10 +40,7 @@ export default function Articles() {
                   <p className="leading-relaxed mb-8">{article.description}</p>
                 )}
                 <div className="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-200 mt-auto w-full">
-                  <a
-                    href="##"
-                    className="text-indigo-700 font-bold inline-flex items-center"
-                  >
+                  <button className="text-indigo-700 font-bold inline-flex items-center">
                     Learn More
                     <svg
                       className="w-4 h-4 ml-2"
@@ -55,16 +54,16 @@ export default function Articles() {
                       <path d="M5 12h14"></path>
                       <path d="M12 5l7 7-7 7"></path>
                     </svg>
-                  </a>
+                  </button>
                   <span className="text-gray-600 mr-3 inline-flex items-center ml-auto leading-none text-sm pr-3">
                     <p>{article.createdAt.split("T")[0]}</p>
                   </span>
                 </div>
-                <a href="##" className="inline-flex items-center">
+                <button className="inline-flex items-center">
                   <img
                     alt={article.author.username + " avatar"}
                     src={article.author.image}
-                    className="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center"
+                    className="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center border-2"
                   />
                   <span className="flex-grow flex flex-col pl-4">
                     <span className="title-font font-medium text-gray-900">
@@ -74,8 +73,8 @@ export default function Articles() {
                       {article.author.bio}
                     </span>
                   </span>
-                </a>
-              </div>
+                </button>
+              </NavLink>
             ))}
           </div>
         </div>

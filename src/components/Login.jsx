@@ -8,7 +8,6 @@ function Login(props) {
   const [state, setState] = useFetchPost();
   const { isLoading, data, error } = state;
   const [showPassword, SetPasswordVisibility] = useState(false);
-  console.log(props.notifications);
 
   if (data) {
     localStorage.setItem("authToken", data.user.token);
@@ -17,7 +16,7 @@ function Login(props) {
     props.history.push("/");
   }
 
-  if (data?.error) {
+  if (error) {
     props.setIsLogged(false);
     props.history.push("/login");
   }
