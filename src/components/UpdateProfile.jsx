@@ -19,8 +19,6 @@ export default function UpdateProfile(props) {
     console.log(isLoading, "isLoading");
   }
 
-  console.log(props.user, "user");
-
   const formik = useFormik({
     initialValues: {
       email: "",

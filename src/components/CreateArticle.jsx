@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useFetchPost } from "./hooks/handleFetch";
 
-export default function CreateArticle() {
+export default function CreateArticle(props) {
   const [state, setState] = useFetchPost();
   const { isLoading, data, error } = state;
 
@@ -55,7 +55,7 @@ export default function CreateArticle() {
     >
       <div className="w-2/4 mx-auto my-16 bg-white flex flex-col">
         <h2 className="text-center text-indigo-700 text-2xl pb-1 leading-none font-extrabold tracking-tight sm:text-2xl sm:leading-no">
-          Create New Article
+          {props.title}
         </h2>
         <p className="text-center leading-relaxed mb-5 text-gray-600">
           Fill all the required details
@@ -126,7 +126,7 @@ export default function CreateArticle() {
           type="submit"
           className="text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg my-4"
         >
-          Publish Article
+          Submit
         </button>
       </div>
     </form>

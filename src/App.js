@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 import Notifications from "./components/Notifications";
+import DeleteModal from "./components/DeleteModal";
+
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
@@ -10,22 +12,14 @@ import LoginPage from "./pages/LoginPage";
 import AuthArticlesPage from "./pages/AuthArticlesPage";
 import CreateArticlePage from "./pages/CreateArticlePage";
 import UpdateProfilePage from "./pages/UpdateProfilePage";
+import SingleArticlePage from "./pages/SingleArticlePage";
+import UpdateArticlePage from "./pages/UpdateArticlePage";
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
   const [user, setUser] = useState(null);
   const [notifications, setNotification] = useState([]);
-
-  setInterval(function () {
-    var time = Date.now();
-    notifications.filter((item) => {
-      console.log(time < item.time + 5000 * 60, "ddd");
-      if (time < item.time + 5000 * 60) {
-        return console.log(time < item.time + 5000 * 60);
-      }
-      return item;
-    });
-  }, 2000);
+  const [isDeleteModalVisible, setIsDeleteModalVisibile] = useState(false);
 
   useEffect(() => {
     if (localStorage.authToken) {
@@ -69,7 +63,27 @@ function App() {
             user={user}
           />
         </Route>
+        <Route exact path="/article/:slug">
+          <SingleArticlePage
+            setNotification={setNotification}
+            notifications={notifications}
+            user={user}
+            setIsDeleteModalVisibile={setIsDeleteModalVisibile}
+          />
+        </Route>
+        <Route exact path="/articles/:slug">
+          <UpdateArticlePage
+            setNotification={setNotification}
+            notifications={notifications}
+            user={user}
+          />
+        </Route>
         <Notifications notifications={notifications} />
+        {isDeleteModalVisible ? (
+          <DeleteModal setIsDeleteModalVisibile={setIsDeleteModalVisibile} />
+        ) : (
+          false
+        )}
         <Footer />
       </Router>
     </>
