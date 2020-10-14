@@ -1,8 +1,10 @@
 import React from "react";
+import { useToasts } from "react-toast-notifications";
 
 export default function Feedback() {
+  const { addToast } = useToasts();
   return (
-    <div className="container">
+    <form className="container">
       <section className="text-gray-700 body-font relative">
         <h1 className="text-3xl font-medium title-font text-gray-900 text-center">
           Feedback
@@ -45,6 +47,13 @@ export default function Feedback() {
             ></textarea>
             <button
               type="submit"
+              onClick={(e) => {
+                e.preventDefault();
+                return addToast("Thank you for your feedback", {
+                  appearance: "success",
+                  autoDismiss: true,
+                });
+              }}
               className="text-white bg-indigo-700 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg"
             >
               Button
@@ -55,6 +64,6 @@ export default function Feedback() {
           </div>
         </div>
       </section>
-    </div>
+    </form>
   );
 }

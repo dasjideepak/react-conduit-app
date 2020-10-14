@@ -3,20 +3,30 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { NavLink, withRouter } from "react-router-dom";
 import { useFetchPost } from "./hooks/handleFetch";
+import { useToasts } from "react-toast-notifications";
 
 function Login(props) {
   const [state, setState] = useFetchPost();
   const { isLoading, data, error } = state;
   const [showPassword, SetPasswordVisibility] = useState(false);
+  const { addToast } = useToasts();
 
-  if (data) {
-    localStorage.setItem("authToken", data.user.token);
+  if (data?.user) {
+    console.log(data, "data");
+    addToast("Login Successfull", { appearance: "success", autoDismiss: true });
+    localStorage.setItem("authToken", data.user?.token);
     props.setUser(data.user);
     props.setIsLogged(true);
     props.history.push("/");
   }
 
   if (error) {
+    addToast(
+      error.message,
+      { appearance: "error" },
+      { autoDismissTimeout: 4000 },
+      { autoDismiss: true }
+    );
     props.setIsLogged(false);
     props.history.push("/login");
   }

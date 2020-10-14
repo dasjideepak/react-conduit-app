@@ -2,16 +2,28 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useFetchPost } from "./hooks/handleFetch";
+import { useToasts } from "react-toast-notifications";
+import { withRouter } from "react-router-dom";
 
-export default function CreateArticle(props) {
+function CreateArticle(props) {
   const [state, setState] = useFetchPost();
   const { isLoading, data, error } = state;
+  const { addToast } = useToasts();
 
   if (data) {
-    console.log(data, "data");
+    addToast("Article added successfully", {
+      appearance: "success",
+      autoDismiss: true,
+    });
+    props.history.push(`/`);
+    console.log(data.article.slug, "data");
   }
 
   if (error) {
+    addToast(error.message, {
+      appearance: "error",
+      autoDismiss: true,
+    });
     console.log(error, "error");
   }
 
@@ -132,3 +144,5 @@ export default function CreateArticle(props) {
     </form>
   );
 }
+
+export default withRouter(CreateArticle);

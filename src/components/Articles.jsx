@@ -59,7 +59,7 @@ export default function Articles() {
                     <p>{article.createdAt.split("T")[0]}</p>
                   </span>
                 </div>
-                <button className="inline-flex items-center">
+                <div className="inline-flex items-center">
                   <img
                     alt={article.author.username + " avatar"}
                     src={article.author.image}
@@ -73,7 +73,7 @@ export default function Articles() {
                       {article.author.bio}
                     </span>
                   </span>
-                </button>
+                </div>
               </NavLink>
             ))}
           </div>

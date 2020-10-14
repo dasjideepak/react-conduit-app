@@ -3,17 +3,27 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { withRouter, useParams } from "react-router-dom";
 import { useFetchPost } from "./hooks/handleFetch";
+import { useToasts } from "react-toast-notifications";
 
 function AddComment(props) {
   const [state, setState] = useFetchPost();
   const { isLoading, data, error } = state;
   const params = useParams();
+  const { addToast } = useToasts();
 
   if (data) {
     console.log(data, "data");
+    addToast("Logout successfull", {
+      appearance: "success",
+      autoDismiss: true,
+    });
   }
 
   if (error) {
+    addToast(error.message, {
+      appearance: "error",
+      autoDismiss: true,
+    });
     console.log(error, "error");
   }
 

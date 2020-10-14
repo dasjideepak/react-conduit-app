@@ -9,13 +9,10 @@ import Comments from "./Comments";
 
 export default function Article(props) {
   const params = useParams();
-  console.log(params);
 
   const { data, error, isLoading } = useFetch(
     ROOT_URL + `articles/${params.slug}`
   );
-
-  console.log(data);
 
   if (data) {
     return (

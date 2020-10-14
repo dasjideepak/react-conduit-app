@@ -3,15 +3,30 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { NavLink, withRouter } from "react-router-dom";
 import { useFetchPost } from "./hooks/handleFetch";
+import { useToasts } from "react-toast-notifications";
 
 function SignUp(props) {
   const [state, setState] = useFetchPost();
   const { isLoading, data, error } = state;
   const [showPassword, SetPasswordVisibility] = useState(false);
+  const { addToast } = useToasts();
 
   if (data?.user) {
+    console.log(data, "signup-data");
+    addToast("Account created successfully", {
+      appearance: "success",
+      autoDismiss: true,
+    });
     localStorage.setItem("authToken", state.data.user.token);
     props.history.push("/");
+  }
+
+  if (error) {
+    console.log(error, "signup-error");
+    addToast(error.message, {
+      appearance: "error",
+      autoDismiss: true,
+    });
   }
 
   const formik = useFormik({
@@ -37,8 +52,11 @@ function SignUp(props) {
     validateOnMount: true,
     onSubmit: (values) => {
       setState({
+        url: "api/users",
+        headers: {
+          "Content-Type": "application/json",
+        },
         value: { user: values },
-        url: "https://mighty-oasis-08080.herokuapp.com/api/users",
       });
     },
   });

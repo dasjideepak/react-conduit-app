@@ -1,12 +1,15 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useToasts } from "react-toast-notifications";
 
 export default function DeleteModal(props) {
-  const params = useParams();
-  console.log(params);
+  const { addToast } = useToasts();
 
   function handleArticleDelete() {
     console.log("Hi");
+    addToast("Article deleted successfully", {
+      appearance: "success",
+      autoDismiss: true,
+    });
   }
 
   return (
