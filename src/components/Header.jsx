@@ -1,13 +1,20 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { withRouter } from "react-router-dom";
+import { useToasts } from "react-toast-notifications";
 
 function Header(props) {
+  const { addToast } = useToasts();
+
   function handleLogout(e) {
     e.preventDefault();
     localStorage.clear();
     props.setIsLogged(false);
     props.history.push("/");
+    addToast("Logout Successfull", {
+      appearance: "success",
+      autoDismiss: true,
+    });
   }
 
   return (
@@ -53,7 +60,7 @@ function Header(props) {
                 src="https://avatars2.githubusercontent.com/u/38307844?s=460&u=f545a10c52359525a21efe75562a272f241ab57d&v=4"
                 alt="user-avatar"
                 width="40px"
-                className="rounded-full cursor-pointer"
+                className="border-2 rounded-full cursor-pointer"
               />
             </>
           ) : (

@@ -2,16 +2,26 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useFetchPost } from "./hooks/handleFetch";
+import { useToasts } from "react-toast-notifications";
 
 export default function UpdateProfile(props) {
   const [state, setState] = useFetchPost();
   const { isLoading, data, error } = state;
+  const { addToast } = useToasts();
 
   if (data) {
+    addToast("Profile updated successfully", {
+      appearance: "success",
+      autoDismiss: true,
+    });
     console.log(data, "data");
   }
 
   if (error) {
+    addToast(error.message, {
+      appearance: "error",
+      autoDismiss: true,
+    });
     console.log(error, "error");
   }
 
