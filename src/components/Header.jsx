@@ -39,9 +39,9 @@ function Header(props) {
           <span className="ml-3 text-xl text-white">Conduit</span>
         </NavLink>
         <nav className="md:ml-auto flex flex-wrap items-center text-base justify-center">
-          <a href="/" className="mr-5 hover:text-gray-400">
+          <NavLink to="/" className="mr-5 hover:text-gray-400">
             Home
-          </a>
+          </NavLink>
           {props.isLogged ? (
             <>
               <NavLink to="/create" className="mr-5 hover:text-gray-400">

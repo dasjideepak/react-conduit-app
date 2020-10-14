@@ -16,8 +16,8 @@ export default function Article(props) {
 
   if (data) {
     return (
-      <section className="container">
-        <div className="p-4 w-full h-full bg-gray-200 px-12 pt-16 pb-16 rounded-lg overflow-hidden relative my-16">
+      <section className="container py-24">
+        <div className="w-full h-full bg-gray-200 rounded-lg overflow-hidden relative p-12">
           {data.article.tagList.map((tag) => {
             return (
               <h2
@@ -45,79 +45,89 @@ export default function Article(props) {
                     {data.article.author.username}
                   </span>
                   <span className="text-gray-500 text-sm">
-                    {data.article.author.following ? "Unfollow" : "Follow"}
+                    {props.user
+                      ? props.user.username === data.article.author.username
+                        ? "You"
+                        : data.article.author.following
+                        ? "Unfollow"
+                        : "Follow"
+                      : data.article.author.bio}
                   </span>
                 </span>
               </NavLink>
             </div>
-            <div className="text-center mt-2 leading-none flex justify-center">
-              <button
-                onClick={() => props.setIsDeleteModalVisibile(true)}
-                className="text-red-600 mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-300"
-              >
-                <svg
-                  className="w-4 h-4 mr-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
-                  ></path>
-                </svg>
-                Delete Article
-              </button>
-              <NavLink
-                to={`/articles/${data.article.slug}`}
-                className="text-blue-800 mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-300"
-              >
-                <svg
-                  className="w-4 h-4 mr-1"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
-                  ></path>
-                </svg>
-                Update Article
-              </NavLink>
-              <NavLink
-                to="/"
-                className="text-blue-800 inline-flex items-center leading-none text-sm"
-              >
-                <svg
-                  className={`${
-                    data.article.favorited ? "text-red-500" : false
-                  } w-8 h-6 `}
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                    clipRule="evenodd"
-                  ></path>
-                </svg>
-                {data.article.favoritesCount}
-              </NavLink>
-            </div>
+            {props.user?.username === data.article?.author?.username ? (
+              <>
+                <div className="text-center mt-2 leading-none flex justify-center">
+                  <button
+                    onClick={() => props.setIsDeleteModalVisibile(true)}
+                    className="text-red-600 mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-300"
+                  >
+                    <svg
+                      className="w-4 h-4 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
+                      ></path>
+                    </svg>
+                    Delete Article
+                  </button>
+                  <NavLink
+                    to={`/articles/${data.article.slug}`}
+                    className="text-blue-800 mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-300"
+                  >
+                    <svg
+                      className="w-4 h-4 mr-1"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                      ></path>
+                    </svg>
+                    Update Article
+                  </NavLink>
+                  <NavLink
+                    to="/"
+                    className="text-blue-800 inline-flex items-center leading-none text-sm"
+                  >
+                    <svg
+                      className={`${
+                        data.article.favorited ? "text-red-500" : false
+                      } w-8 h-6 `}
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                        clipRule="evenodd"
+                      ></path>
+                    </svg>
+                    {data.article.favoritesCount}
+                  </NavLink>
+                </div>
+              </>
+            ) : (
+              false
+            )}
           </div>
         </div>
-        <div className="flex my-12 w-full">
-          <div className="w-1/2">
-            <AddComment />
-          </div>
+        <div className="flex py-12 w-full">
+          <div className="w-1/2">{props.user ? <AddComment /> : false}</div>
           <div className="w-1/2">
             <Comments />
           </div>
